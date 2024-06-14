@@ -8,5 +8,6 @@ func void Ninja_OCExpansion_Init() {
     LeGo_MergeFlags(LeGo_PermMem);
     
     MEM_Info(ConcatStrings(ConcatStrings("Initialize ", Ninja_OCExpansion_Version), "."));
+    Patch_OC_Init();
     MEM_Info(ConcatStrings(Ninja_OCExpansion_Version, " was initialized successfully."));
 };

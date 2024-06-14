@@ -130,7 +130,7 @@ func int Ninja_OCExpansion_PC_Common_Condition()
 func int Ninja_OCExpansion_PC_Ore_Condition()
 {
     // If player already selected forging an armor
-    if (true == NINJA_ARMOREXPANSION_ArmorForging)
+    if (true == NINJA_OCEXPANSION_ArmorForging)
     {
         return false;
     };
