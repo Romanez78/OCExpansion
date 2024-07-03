@@ -19,9 +19,11 @@
 
 
 /*
- *  [VARIABLES]
+ *  [CONSTANTS]
+ *   - [MOBSI]
+ *  Treat an anvil like another mobsi, when player wants to forge an armor from a packet.
  */
-var int NINJA_OCEXPANSION_ArmorForging; // Did player select the option to forge an armor?
+const int NINJA_OCEXPANSION_MOBSI_SmithWeapon = 101;
 
 
 /*
@@ -66,6 +68,13 @@ const int NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_GHR__ITAR_Thorus_Addon = 1;
 const int NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ItMiSwordrawhot = 4;
 const int NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ItMi_Nugget = 1;
 const int NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ITAR_OC_BL = 1;
+
+/*
+ *  instance `ITAR_OC_SH`
+ *      Description: in `Use_Plan_OCBaronArmor` called by `ItWr_BluePrint_OCBaronArmor` [IT_OCEXPANSION.D]
+ */
+const int NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_SH__ItMiSwordrawhot = 2;
+const int NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_SH__Itat_Wolffur = 3;
 
 /*
  *  [CONSTANTS]
@@ -120,7 +129,7 @@ func void NINJA_OCEXPANSION_Func_Print_ForgeSuccess(var string armorName)
 func int Ninja_OCExpansion_PC_Common_Condition()
 {
     // If player already selected forging an armor
-    if (true == NINJA_OCEXPANSION_ArmorForging)
+    if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
         return false;
     };
@@ -130,7 +139,7 @@ func int Ninja_OCExpansion_PC_Common_Condition()
 func int Ninja_OCExpansion_PC_Ore_Condition()
 {
     // If player already selected forging an armor
-    if (true == NINJA_OCEXPANSION_ArmorForging)
+    if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
         return false;
     };
@@ -154,23 +163,20 @@ instance NINJA_OCEXPANSION_PC_FORGE_ARMOR(C_INFO)
 };
 func int NINJA_OCXPANSION_PC_FORGE_ARMOR_Condition()
 {
-	if (PLAYER_MOBSI_PRODUCTION == MOBSI_SMITHWEAPON)
+	if (MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
         if (false == Normalwaffen)
         {
             if (false == Erzwaffen)
             {
-                if (false == NINJA_OCEXPANSION_ArmorForging)
-                {
-                    return TRUE;
-                };
+                return TRUE;
             };
         };
     };
 };
 func void NINJA_OCEXPANSION_PC_FORGE_ARMOR_Info()
 {
-	NINJA_OCEXPANSION_ArmorForging = true;
+    PLAYER_MOBSI_PRODUCTION = NINJA_OCEXPANSION_MOBSI_SmithWeapon;
 };
 
 instance NINJA_OCEXPANSION_PC_FORGE_ARMORBACK(C_INFO)
@@ -184,23 +190,40 @@ instance NINJA_OCEXPANSION_PC_FORGE_ARMORBACK(C_INFO)
 };
 func int NINJA_OCEXPANSION_PC_FORGE_ARMORBACK_Condition()
 {
-    if (PLAYER_MOBSI_PRODUCTION == MOBSI_SMITHWEAPON)
+    if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
-        if (false == Normalwaffen)
-        {
-            if (false == Erzwaffen)
-            {
-                if (true == NINJA_OCEXPANSION_ArmorForging)
-                {
-                    return true;
-                };
-            };
-        };
+        return true;
     };
 };
 func void NINJA_OCEXPANSION_PC_FORGE_ARMORBACK_Info()
 {
-	NINJA_OCEXPANSION_ArmorForging = false;
+    // Return to original constant.
+	PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
+};
+instance NINJA_OCEXPANSION_PC_FORGE_ARMOR_End(C_Info)
+{
+	npc				= PC_Hero;
+	nr				= 999;
+	condition		= NINJA_OCEXPANSION_PC_FORGE_ARMOR_End_Condition;
+	information		= NINJA_OCEXPANSION_PC_FORGE_ARMOR_End_Info;
+	permanent		= TRUE;
+	description		= DIALOG_ENDE;
+};
+func int NINJA_OCEXPANSION_PC_FORGE_ARMOR_End_Condition()
+{
+	if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
+	{
+		return TRUE;
+	};
+};
+func void NINJA_OCEXPANSION_PC_FORGE_ARMOR_End_Info()
+{
+	CreateInvItems(self, ItMiSwordRaw, 1);
+	B_ENDPRODUCTIONDIALOG();
+    
+    // For sure I reset it.
+	Erzwaffen = FALSE;
+	NormalWaffen = FALSE;
 };
 
 
@@ -221,15 +244,12 @@ INSTANCE NINJA_OCEXPANSION_PC_ITAR_OC_GLR (C_INFO)
 };
 FUNC INT NINJA_OCEXPANSION_PC_ITAR_OC_GLR_Condition()
 {	
-	if (MOBSI_SMITHWEAPON == PLAYER_MOBSI_PRODUCTION)
+	if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
-        if (true == NINJA_OCEXPANSION_ArmorForging)
-        {
-            // If has a blueprint
-            if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
-			{	
-                return true;
-            };
+        // If has a blueprint
+        if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
+		{	
+            return true;
         };
     };
 };
@@ -337,15 +357,12 @@ INSTANCE NINJA_OCEXPANSION_PC_ITAR_OC_GMR (C_INFO)
 };
 FUNC INT NINJA_OCEXPANSION_PC_ITAR_OC_GMR_Condition()
 {	
-	if (MOBSI_SMITHWEAPON == PLAYER_MOBSI_PRODUCTION)
+	if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
-        if (true == NINJA_OCEXPANSION_ArmorForging)
-        {
-            // If has a blueprint
-            if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
-			{	
-                return true;
-            };
+        // If has a blueprint
+        if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
+		{	
+            return true;
         };
     };
 };
@@ -453,15 +470,12 @@ INSTANCE NINJA_OCEXPANSION_PC_ITAR_OC_GHR (C_INFO)
 };
 FUNC INT NINJA_OCEXPANSION_PC_ITAR_OC_GHR_Condition()
 {	
-	if (MOBSI_SMITHWEAPON == PLAYER_MOBSI_PRODUCTION)
+	if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
-        if (true == NINJA_OCEXPANSION_ArmorForging)
-        {
-            // If has a blueprint
-            if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
-			{	
-                return true;
-            };
+        // If has a blueprint
+        if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
+		{	
+            return true;
         };
     };
 };
@@ -531,13 +545,13 @@ FUNC VOID NINJA_OCEXPANSION_PC_ITAR_OC_GHR_Info()
         Npc_RemoveInvItems(hero, ItMiSwordrawhot, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_GHR__ItMiSwordrawhot - 1);
         
         // [ItAt_TrollFur]
-        Npc_RemoveInvItems(hero, ItAt_WargFur, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_GHR__ItAt_TrollFur);
+        Npc_RemoveInvItems(hero, ItAt_TrollFur, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_GHR__ItAt_TrollFur);
         
         // [ITAR_Thorus_Addon]		
 		Npc_RemoveInvItems(hero, ITAR_Thorus_Addon, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_GHR__ITAR_Thorus_Addon); 
         
         // Create an armor
-        CreateInvItem(hero, ITAR_OC_GMR);
+        CreateInvItem(hero, ITAR_OC_GHR);
         
         // Print an information about success
         NINJA_OCEXPANSION_Func_Print_ForgeSuccess(ITAR_OC_GHR.name);
@@ -569,15 +583,12 @@ INSTANCE NINJA_OCEXPANSION_PC_ITAR_OC_BM (C_INFO)
 };
 FUNC INT NINJA_OCEXPANSION_PC_ITAR_OC_BM_Condition()
 {	
-	if (MOBSI_SMITHWEAPON == PLAYER_MOBSI_PRODUCTION)
+	if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
     {
-        if (true == NINJA_OCEXPANSION_ArmorForging)
-        {
-            // If has a blueprint
-            if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
-			{	
-                return true;
-            };
+        // If has a blueprint
+        if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
+		{	
+            return true;
         };
     };
 };
@@ -647,16 +658,107 @@ FUNC VOID NINJA_OCEXPANSION_PC_ITAR_OC_BM_Info()
         Npc_RemoveInvItems(hero, ItMiSwordrawhot, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ItMiSwordrawhot - 1);
         
         // [ItMi_Nugget]
-        Npc_RemoveInvItems(hero, ItAt_WargFur, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ItMi_Nugget);
+        Npc_RemoveInvItems(hero, ItMi_Nugget, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ItMi_Nugget);
         
         // [ITAR_OC_BL]		
-		Npc_RemoveInvItems(hero, ITAR_Thorus_Addon, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ITAR_OC_BL); 
+		Npc_RemoveInvItems(hero, ITAR_OC_BL, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_BM__ITAR_OC_BL); 
         
         // Create an armor
         CreateInvItem(hero, ITAR_OC_BM);
         
         // Print an information about success
         NINJA_OCEXPANSION_Func_Print_ForgeSuccess(ITAR_OC_BM.name);
+    // If hasn't
+    } else
+    {
+        // Restore a raw steel
+        CreateInvItem(hero, ItMiSwordrawhot);
+    };
+    
+
+    // Quit a dialogue window
+	B_ENDPRODUCTIONDIALOG();
+};
+
+/*
+ *  NINJA_OCEXPANSION_PC_ITAR_OC_SH
+ */
+INSTANCE NINJA_OCEXPANSION_PC_ITAR_OC_SH (C_INFO)
+{
+	npc				= PC_Hero;
+	condition		= NINJA_OCEXPANSION_PC_ITAR_OC_SH_Condition;
+	information		= NINJA_OCEXPANSION_PC_ITAR_OC_SH_Info;
+	permanent		= true;
+    description     = "Vylepšit zbroj Rudobarona stráže";
+};
+FUNC INT NINJA_OCEXPANSION_PC_ITAR_OC_SH_Condition()
+{	
+	if (NINJA_OCEXPANSION_MOBSI_SmithWeapon == PLAYER_MOBSI_PRODUCTION)
+    {
+        // If has a blueprint
+        if (0 < Npc_HasItems(hero, ItWr_BluePrint_ImproveOCArmor))
+		{	
+            return true;
+        };
+    };
+};
+FUNC VOID NINJA_OCEXPANSION_PC_ITAR_OC_SH_Info()
+{
+	var int has_all_ingredients; has_all_ingredients = true;
+    var int amount_needed;
+    var int amount_current;
+    var int amount_missing;
+    
+    // Check ingredients
+    
+    // [ItMiSwordrawhot]
+    amount_needed = NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_SH__ItMiSwordrawhot;
+    amount_current = Npc_HasItems(hero, ItMiSwordrawhot) + 1; // IMPORTANT: An one of a raw steel is in a hand
+    
+    if (amount_needed > amount_current)
+    {
+        // Count missing ingredients
+        amount_missing = amount_needed - amount_current;
+    
+        // Print message
+        NINJA_OCEXPANSION_Func_Print_ProdItemsMissing(ItMiSwordrawhot.name, amount_missing);
+
+        // Save an information, that player hasn't all ingredients
+        has_all_ingredients = false;
+    };
+    
+    // [ItAt_Wolffur]
+    amount_needed = NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_SH__ItAt_Wolffur;
+    amount_current = Npc_HasItems(hero, ItAt_Wolffur);
+    if (amount_needed > amount_current)
+    {
+        // Count missing ingredients
+        amount_missing = amount_needed - amount_current;
+    
+        // Print message
+        NINJA_OCEXPANSION_Func_Print_ProdItemsMissing(ItAt_Wolffur.name, amount_missing);
+
+        // Save an information, that player hasn't all ingredients
+        has_all_ingredients = false;
+    };
+    
+    // If player has all ingredients
+    if (true == has_all_ingredients)
+    {
+        // Remove ingredients
+        
+        // [ItMiSwordrawhot]
+        // IMPORTANT: An one raw steel will be removed by finishing using of an anvil
+        Npc_RemoveInvItems(hero, ItMiSwordrawhot, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_SH__ItMiSwordrawhot - 1);
+        
+        // [ItAt_Wolffur]
+        Npc_RemoveInvItems(hero, ItAt_WolfFur, NINJA_OCEXPANSION_INGREDIENTS_ITAR_OC_SH__ItAt_WolfFur);
+        
+        // Create an armor
+        CreateInvItem(hero, ITAR_OC_SH);
+        
+        // Print an information about success
+        NINJA_OCEXPANSION_Func_Print_ForgeSuccess(ITAR_OC_SH.name);
     // If hasn't
     } else
     {

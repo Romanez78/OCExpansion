@@ -134,10 +134,7 @@ func int Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_Condition ()
 };
 func void Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_Info ()
 {
-    AI_Output(other, self, "Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_15_01"); //M·m u sebe dostatek zlat˝ch, oprav mi zbroj.
-
-	if (Npc_Hasitems(other, ItAr_OC_SB) > 0) && (Npc_HasItems(other,ItMi_Gold) >= 175)
-	{	
+    AI_Output(other, self, "Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_15_01"); //M·m u sebe dostatek zlat˝ch, oprav mi zbroj.	
         B_GiveInvItems(other, self, ItAr_OC_SB, 1);				
         B_GiveInvItems(other, self, ItMi_Gold, 175);
         AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_13_12"); //Dobr·, d·m se tedy do toho.
@@ -161,11 +158,6 @@ func void Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_Info ()
         AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_13_14"); //Tady, opravil jsem ji.
         AI_Output(other, self, "Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_15_15"); //DÌky.
 		B_LogEntry (TOPIC_CARL_REPAIRSHADOWARMOR,"Carl mi opravil zbroj.");
-	}
-	else 
-	{
-	    AI_Output (self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_REFORGE_13_16"); //SnaûÌö se mnÏ nap·lit?
-	};
 };
 //-------------------------------------
 //-------------------------------------
@@ -190,8 +182,8 @@ func void Ninja_OldCampExpansion_DIA_Addon_Carl_UPGRADEQUESTION_Info ()
     AI_Output(other, self, "Ninja_OldCampExpansion_DIA_Addon_Carl_UPGRADEQUESTION_15_01"); //Neölo by tu zbroj vylepöit?
 	AI_PlayAni (self, "T_SEARCH");
 	AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_UPGRADEQUESTION_13_05"); //M·m u sebe n·kres kter˝ jsem zÌskal kr·tce po p·du bariÈry.
-	AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_UPGRADEQUESTION_13_06"); //Za 250 zlat˝ch ti prod·m jeho kopii kterou jsem udÏlal
-	B_LogEntry (TOPIC_CARL_REPAIRSHADOWARMOR,"Carl mi prod· n·kres na v˝robu zbroje stÌna za 250 zlat˝ch.");
+	AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_UPGRADEQUESTION_13_06"); //Za 250 zlat˝ch ti ho p¯epÌöu.
+	B_LogEntry (TOPIC_CARL_REPAIRSHADOWARMOR,"Carl mi p¯epÌöe n·kres na v˝robu zbroje stÌna za 250 zlat˝ch.");
 };
 //-------------------------------------
 //-------------------------------------
@@ -206,49 +198,26 @@ instance Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR (C_INFO)
 };
 func int Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_Condition ()
 {	
-	if (Npc_Hasitems(other, ItAr_OC_SL) > 0) && (Npc_HasItems(other,ItMi_Gold) >= 350) && (Npc_HasItems(other,ItMiSwordraw) >= 1) && (Npc_HasItems(other,ItAt_Wolffur) >= 1)
-	&& (Npc_KnowsInfo (other, Ninja_OldCampExpansion_DIA_Addon_Carl_UPGRADEQUESTION))
+	if (Npc_KnowsInfo (other, Ninja_OldCampExpansion_DIA_Addon_Carl_UPGRADEQUESTION))
 	{
 		return TRUE;
 	};
 };
 func void Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_Info ()
 {
-    AI_Output(other, self, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_15_01"); //M·m u sebe vöechno na vylepöenÌ zbroje.
+    AI_Output(other, self, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_15_01"); //Prodej mi n·kres na v˝robu zbroje stÌna.
 
-	if (Npc_Hasitems(other, ItAr_OC_SL) > 0) && (Npc_HasItems(other,ItMi_Gold) >= 350) && (Npc_HasItems(other,ItMiSwordraw) >= 1) && (Npc_HasItems(other,ItAt_Wolffur) >= 1)
-	{	
-        B_GiveInvItems(other, self, ItAr_OC_SL, 1);				
-        B_GiveInvItems(other, self, ItMi_Gold, 350);
-        B_GiveInvItems(other, self, ItAt_Wolffur, 1);        
-        B_GiveInvItems(other, self, ItMiSwordraw, 1);	
+	if (B_GiveInvItems(other, self, ItMi_Gold, 250)) 
+	{		
 		AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR13_12"); //Dobr·, d·m se tedy do toho.
-        
-        B_LookAtNpc(other, self);
-        AI_UseMob(self, "BSFIRE", 1);
-        AI_UseMob(self, "BSFIRE", -1);
-        B_TurnToNpc(other, self);
-
-        AI_UseMob(self, "BSANVIL", 1);
-        AI_UseMob(self, "BSANVIL", -1);
-        B_TurnToNpc(other, self);
-
-        AI_UseMob(self, "BSCOOL", 1);
-        AI_UseMob(self, "BSCOOL", -1);
-        B_TurnToNpc(other, self);
-        B_TurnToNpc(self, other);
-        
-        AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_13_13"); //Hotovo.
-        B_GiveInvItems(self, other, ITAR_OC_SH, 1);
-        AI_Output(self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_13_14"); //Tady, vylepöil jsem ji.
-        AI_Output(other, self, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_15_15"); //DÌky.
+        B_GiveInvItems(self, other, Itwr_blueprint_OC_SH, 1);
 		B_LogEntry (TOPIC_CARL_REPAIRSHADOWARMOR,"Carl mi vylepöil zbroj.");
 		Log_SetTopicStatus (TOPIC_CARL_REPAIRSHADOWARMOR, LOG_SUCCESS);
 
 	}
 	else 
 	{
-	    AI_Output (self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_13_16"); //SnaûÌö se mnÏ nap·lit?
+	    AI_Output (self, other, "Ninja_OldCampExpansion_DIA_Addon_Carl_SHADOWARMOR_13_16"); //SnaûÌö se mnÏ nap·lit? ÿÌkal jsem ûe za nÏj chci 250 zlat˝ch.
 	};
 };
 //-------------------------------------
@@ -347,7 +316,6 @@ func void DIA_Addon_Greg_GuardArmor_PATCH_Info ()
 	B_GiveInvItems(self, other, ITAR_OC_GL, 1);
 };
 //-------------------------------------
-const string	TOPIC_ENGOR_BARONARMOR				=   "Zbroj Rudobarona";
 //-------------------------------------
 instance DIA_ENGOR_ARMORQUESTION_BARON_PATCHOC (C_INFO)
 {
@@ -369,10 +337,8 @@ func void DIA_ENGOR_ARMORQUESTION_BARON_PATCHOC_Info ()
 {
     AI_Output(other, self, "DIA_ENGOR_ARMORQUESTION_BARON_PATCHOC_15_01"); //Stalo se tu na z·mku mezitÌm nÏco zajÌmavÈho?
     AI_Output(self, other, "DIA_ENGOR_ARMORQUESTION_BARON_PATCHOC_13_02"); //Dalo by se tak ¯Ìct, jelikoû jsme tu uvÏznÏni tak m·me vÌce Ëasu prozkoum·vat zbytek hradu.
-    AI_Output(self, other, "DIA_ENGOR_ARMORQUESTION_BARON_PATCHOC_13_03"); //Naöel jsem nÏjakou zbroj, myslÌm si ûe pat¯ila rudobaron˘m co tu vl·dly. M˘ûe b˝t tvoje za 3000 zlat˝ch.
-	Log_CreateTopic (TOPIC_ENGOR_BARONARMOR,LOG_MISSION);
-	Log_CreateTopic (TOPIC_ENGOR_BARONARMOR,LOG_RUNNING);	
-	B_LogEntry (TOPIC_ENGOR_BARONARMOR,"Engor mi prod· zbroj rudobarona za 3000 zlat˝ch.");
+    AI_Output(self, other, "DIA_ENGOR_ARMORQUESTION_BARON_PATCHOC_13_03"); //Naöel jsem nÏjakou zbroj, myslÌm si ûe pat¯ila rudobaron˘m co tu vl·dly. Ale pochybuju ûe by tu nÏkdo chtÏl nÏco takovÈho nosit, takûe m˘ûe b˝t tvoje za 3000 zlat˝ch.
+	B_LogEntry (TOPIC_Trader_OC,"Engor mi prod· zbroj rudobarona za 3000 zlat˝ch.");
 };
 instance DIA_PATCHOC_ENGOR_BARON_BUY		(C_INFO)
 {
@@ -397,7 +363,7 @@ func void DIA_PATCHOC_ENGOR_BARON_BUY_Info ()
 	if (B_GiveInvItems(other, self, ItMi_Gold, 3000))
 	{	
 		AI_Output(self, other, "DIA_PATCHOC_ENGOR_BARON_BUY_4_2"); //Dob¯e, tady ji m·ö.
-			B_LogEntry (TOPIC_ENGOR_BARONARMOR,"Engor mi prodal zbroj rudobarona, moûn· by se dala jeötÏ vylepöit.");
+		B_LogEntry (TOPIC_Trader_OC,"Engor mi prodal zbroj Rudobarona.");
 
 		B_GiveInvItems(self, other, ItAr_OC_BL, 1);
 	}
@@ -407,7 +373,6 @@ func void DIA_PATCHOC_ENGOR_BARON_BUY_Info ()
 	};
 };
 //-------------------------------------
-const string	TOPIC_DOBAR_OLDCAMPARMORS				=   "Zbroj Rudobarona";
 //-------------------------------------
 instance DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC (C_INFO)
 {
@@ -420,7 +385,7 @@ instance DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC (C_INFO)
 };
 func int DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_Condition ()
 {	
-	if (Npc_HasItems(other, ItAr_OC_GL) > 0)
+	if (Npc_HasItems(other, ItAr_OC_GL) > 0) || (Npc_HasItems(other, ItAr_OC_GM) > 0) || (Npc_HasItems(other, ItAr_OC_SL) > 0) || (Npc_HasItems(other, ItAr_OC_SH) > 0) || (Npc_HasItems(other, ItAr_OC_BL) > 0)
 	{
 		return TRUE;
 	};
@@ -431,11 +396,11 @@ func void DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_Info ()
     AI_Output(other, self, "DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_15_01"); //Jednu u sebe m·m, a myslÌm si ûe pr·vÏ ty by si mi mohl pomoct.    
 	AI_Output(self, other, "DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_13_02"); //Mohl, m·m u sebe n·kres kde jsem sepsal mÈ n·pady jak vylepöit zbroje co se tam nosily. 
 	AI_Output(self, other, "DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_13_02"); //ChtÏl jsem ho uk·zat Stoneovi, ale tÈ doby co uzav¯ely star˝ t·bor jsem ho nevidÏl a myslÌm si ûe teÔ uû by ho to stejnÏ nezajÌmalo.    
-	AI_Output(self, other, "DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_13_03"); //N·kres uû tedy pro mnÏ nem· vyuûitÌ, prod·m ti ho za 1750 zlat˝ch.
-	Log_CreateTopic (TOPIC_DOBAR_OLDCAMPARMORS,LOG_NOTE);	
-	B_LogEntry (TOPIC_DOBAR_OLDCAMPARMORS,"Huno mi prod· n·kres kde m· seps·no jak vylepöit zbroje ze starÈho t·bora.");
+	AI_Output(self, other, "DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_13_03"); //N·kres uû tedy pro mnÏ nem· vyuûitÌ, prod·m ti ho za 1750 zlat˝ch.	
+	B_LogEntry (Topic_Addon_BDT_Trader,"Huno mi prod· n·kres kde m· seps·no jak vylepöit zbroje ze starÈho t·bora.");
 };
 //
+const string TOPIC_Huno_BARONARMOR = "»ern· zbroj rudobarona"; 
 instance DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC (C_INFO)
 {
 	npc			 =  BDT_1099_Addon_Huno;
@@ -459,7 +424,9 @@ func void DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_Info ()
     AI_Output(other, self, "DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_15_01"); //Dala by se vylepöit s Ëernou rudou, Ëetl jsem o neËem podobnÈm ve starÈ knize.  
     AI_Output(self, other, "DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_13_02"); //ZnÌ to trochu öÌlenÏ, ale myslÌm si ûe by to ölo udÏlat.
     AI_Output(self, other, "DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_13_03"); //Takûe tedy, na takovou zbroj budeö pot¯ebovat dva kusy ËernÈ rudy, a jeötÏ jeden nuget magickÈ rudy.
-	B_LogEntry (TOPIC_ENGOR_BARONARMOR,"Huno souhlasil na vylepöenÌ zbroje rudobarona za pomocÌ ËernÈ rudy, bude pot¯ebovat dva kusy ËernÈ rudy a jeden nuget magickÈ rudy.");
+		Log_CreateTopic (TOPIC_Huno_BARONARMOR,LOG_MISSION);
+	Log_SetTopicStatus (TOPIC_Huno_BARONARMOR,LOG_RUNNING);
+	B_LogEntry (TOPIC_Huno_BARONARMOR,"Huno souhlasil na vylepöenÌ zbroje rudobarona za pomocÌ ËernÈ rudy, bude pot¯ebovat dva kusy ËernÈ rudy a jeden nuget magickÈ rudy.");
 };
 instance DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor (C_INFO)
 {
@@ -486,9 +453,9 @@ func void DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_Info ()
 
 	if (Npc_HasItems(other, ItAr_OC_BM) > 0)
     && (Npc_HasItems(other, ItMi_Nugget) >= 1)
-	&& (Npc_HasItems(other, ItMi_Zeitspalt_Addon) >= 1)
+	&& (Npc_HasItems(other, ItMi_Zeitspalt_Addon) >= 2)
 	{	
-        B_GiveInvItems(other, self, ITAR_OC_BL, 1);				
+        B_GiveInvItems(other, self, ITAR_OC_BM, 1);				
         B_GiveInvItems(other, self, ItMi_Nugget, 1);
         B_GiveInvItems(other, self, ItMi_Zeitspalt_Addon, 2);       
 	   AI_Output(other, self, "DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_15_10"); //Tady to je.
@@ -525,14 +492,15 @@ func void DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_Info ()
         B_GiveInvItems(self, other, ITAR_OC_BH, 1);
         AI_Output(self, other, "DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_13_13"); //Tady je, jsem s·m p¯ekvapen˝ ûe se takhle vyda¯ila.
         AI_Output(other, self, "DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_15_14"); //DÌky.
-				B_LogEntry (TOPIC_ENGOR_BARONARMOR,"Huno mi vylepöil zbroj rudobarona za pomocÌ ËernÈ rudy.");
-		Log_SetTopicStatus(TOPIC_ENGOR_BARONARMOR, LOG_SUCCESS);	
+				B_LogEntry (TOPIC_Huno_BARONARMOR,"Huno mi vylepöil zbroj rudobarona za pomocÌ ËernÈ rudy.");
+		Log_SetTopicStatus(TOPIC_Huno_BARONARMOR, LOG_SUCCESS);	
 	}
 	else 
 	{
 	    AI_Output (self, other, "DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_13_16"); //Vraù se aû to vöechno budeö mÌt u sebe.
 	};
 };
+
 instance PC_BARONAMAZINGIDEA_PATCHOC (C_INFO)
 {
 	condition	 = 	PC_BARONAMAZINGIDEA_PATCHOC_Condition;
@@ -547,5 +515,5 @@ func int PC_BARONAMAZINGIDEA_PATCHOC_Condition ()
 };
 func void PC_BARONAMAZINGIDEA_PATCHOC_Info ()
 {	
-	B_LogEntry (TOPIC_ENGOR_BARONARMOR,"Po p¯eËtenÌ Almanachu jsem dostal n·pad jak vylepöit zbroj rudobarona za pomocÌ ËernÈ rudy.");
+	B_LogEntry (TOPIC_HUNO_BARONARMOR,"Po p¯eËtenÌ Almanachu jsem dostal n·pad jak vylepöit zbroj rudobarona za pomocÌ ËernÈ rudy.");
 };

@@ -61,7 +61,7 @@ INSTANCE ITAR_OC_BM (C_Item)
 	protection [PROT_EDGE]	=	115;
 	protection [PROT_BLUNT] = 	115;
 	protection [PROT_POINT] = 	115;
-	protection [PROT_FIRE] 	= 	70;
+	protection [PROT_FIRE] 	= 	65;
 	protection [PROT_MAGIC] = 	20;
 
 	value 					=	10000;
@@ -164,9 +164,9 @@ INSTANCE ITAR_OC_GM (C_Item)
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
 
-	protection [PROT_EDGE]	=	60;
-	protection [PROT_BLUNT] = 	60;
-	protection [PROT_POINT] = 	60;
+	protection [PROT_EDGE]	=	65;
+	protection [PROT_BLUNT] = 	65;
+	protection [PROT_POINT] = 	65;
 	protection [PROT_FIRE] 	= 	10;
 	protection [PROT_MAGIC] = 	5;
 
@@ -390,9 +390,9 @@ INSTANCE ITAR_OC_GMR (C_Item)
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
 
-	protection [PROT_EDGE]	=	65;
-	protection [PROT_BLUNT] = 	65;
-	protection [PROT_POINT] = 	65;
+	protection [PROT_EDGE]	=	70;
+	protection [PROT_BLUNT] = 	70;
+	protection [PROT_POINT] = 	70;
 	protection [PROT_FIRE] 	= 	15;
 	protection [PROT_MAGIC] = 	5;
 
@@ -499,8 +499,8 @@ INSTANCE ITAR_OC_GHR (C_Item)
 	protection [PROT_EDGE]	=	75;
 	protection [PROT_BLUNT] = 	75;
 	protection [PROT_POINT] = 	75;
-	protection [PROT_FIRE] 	= 	35;
-	protection [PROT_MAGIC] = 	15;
+	protection [PROT_FIRE] 	= 	20;
+	protection [PROT_MAGIC] = 	10;
 
 	value 					=	1750;
 
@@ -555,13 +555,13 @@ instance ItWr_BluePrint_ImproveOCArmor(C_Item)
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 
-	on_state[0] = Use_Plan_OCArmor;
+	on_state[0] = Use_Plan_OCArmor_Ninja;
 
 	scemeName = "MAP";
 
 	description = name;
 };
-func void Use_Plan_OCArmor()
+func void Use_Plan_OCArmor_Ninja()
 {
 	var int nDocID;
 	nDocID = Doc_Create();
@@ -571,25 +571,76 @@ func void Use_Plan_OCArmor()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"     Nákres na výrobu plátové zbroje ze Stewarku");
+	Doc_PrintLine(nDocID,0,"     Nápady na vylepšní zbrojí v táboøe");
 	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Stone, dostal jsem nápad jak vylepšit zbroje které se tu nosí. Zkus ho zvážit.");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Tohle je nákres pro všechny schopné kováøe mìsta Stewark,");
-    Doc_PrintLines(nDocID,0,"máte za úkol vyrobit nové kusy zbroje kterou bude");
-    Doc_PrintLines(nDocID,0,"vybavena stráž mìsta.");
-    Doc_PrintLines(nDocID,0,"Suroviny dostanete brzy, na výrobu jedné zbroje budete potøebovat:");
-    Doc_PrintLines(nDocID,0,"-6 Kusù surového železa");
-    Doc_PrintLines(nDocID,0,"-3 Kùže Warga");
-    Doc_PrintLines(nDocID,0,"Návod k výrobì je na druhé stranì tohoto nákresu.");
+    Doc_PrintLines(nDocID,0,"Suroviny pro lehkou zbroj stráže:");
+    Doc_PrintLines(nDocID,0,"1x surová ocel, 2x Kùže divoèáka");
+    Doc_PrintLines(nDocID,0,"");
+    Doc_PrintLines(nDocID,0,"Suroviny pro støední zbroj stráže:");
+    Doc_PrintLines(nDocID,0,"2x surová ocel, 2x kùže Warga");
+    Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Suroviny pro tìžkou zbroj stráže:");
+	Doc_PrintLines(nDocID,0,"4x surová ocel, 1x kùže Trolla");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Pokud budete pøistiženi jak prodáváte suroviny");
-	Doc_PrintLines(nDocID,0,"nebo nákres, budete tvrdì potrestáni.");
+	Doc_PrintLines(nDocID,0,"Suroviny pro zbroj rudobarona:");
+	Doc_PrintLines(nDocID,0,"4x surová ocel, 1x hrudka magické rudy");
 	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Postup jsem napsal na druhou stranu.");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Rozkaz vydal velitel mìstské stráže Cenric");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };  
+
+instance ItWr_BluePrint_OC_SH(C_Item)
+{
+	name = "Nákres na výrobu zbroje stína";
+
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+
+	value = 100;
+
+	visual = "ItWr_Scroll_01.3DS";
+	material = MAT_LEATHER;
+
+	on_state[0] = Use_Plan_OC_SH_Ninja;
+
+	scemeName = "MAP";
+
+	description = name;
+};
+func void Use_Plan_OC_SH_Ninja()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"letters.TGA",0);
+	Doc_SetFont(nDocID,0,FONT_BookHeadline);
+	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	Doc_SetFont(nDocID,0,FONT_Book);
+	Doc_PrintLine(nDocID,0,"     Nákres na výrobu zbroje stína");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+    Doc_PrintLines(nDocID,0,"Potøebné suroviny:");
+    Doc_PrintLines(nDocID,0,"2x surová ocel, 3x Kùže vlka");
+    Doc_PrintLines(nDocID,0,"");
+    Doc_PrintLines(nDocID,0,"Postup máš napsaný na druhé stranì");
+    Doc_PrintLines(nDocID,0,"");
+    Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_Show(nDocID);
+}; 
