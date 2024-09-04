@@ -15,4 +15,5 @@
 func void Patch_OC_Init() {
     HookDaedalusFuncS("PC_Common_Condition", "Ninja_OCExpansion_PC_Common_Condition");
     HookDaedalusFuncS("PC_Ore_Condition", "Ninja_OCExpansion_PC_Ore_Condition");
+    HookDaedalusFuncS("Use_FINALDRAGONEQUIPMENT_S1", "Ninja_OCExpansion_Use_FINALDRAGONEQUIPMENT_S1");
 };

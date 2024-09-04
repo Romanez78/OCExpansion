@@ -400,7 +400,9 @@ func void DIA_DOBAR_ARMORQUESTION_OLDCAMP_PATCHOC_Info ()
 	B_LogEntry (Topic_Addon_BDT_Trader,"Huno mi prodá nákres kde má sepsáno jak vylepšit zbroje ze starého tábora.");
 };
 //
-const string TOPIC_Huno_BARONARMOR = "Èerná zbroj rudobarona"; 
+const string TOPIC_Huno_BARONARMOR = "Èerná zbroj rudobarona";
+var int Ninja_OCExpansion_MIS_Huno_BARONARMOR;
+var int Ninja_OCExpansion_MIS_Huno_BARONARMOR__Log_Entry_Added;
 instance DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC (C_INFO)
 {
 	npc			 =  BDT_1099_Addon_Huno;
@@ -424,7 +426,8 @@ func void DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_Info ()
     AI_Output(other, self, "DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_15_01"); //Dala by se vylepšit s èernou rudou, èetl jsem o neèem podobném ve staré knize.  
     AI_Output(self, other, "DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_13_02"); //Zní to trochu šílenì, ale myslím si že by to šlo udìlat.
     AI_Output(self, other, "DIA_ENGOR_ARMORQUESTION_BARONBLACK_PATCHOC_13_03"); //Takže tedy, na takovou zbroj budeš potøebovat dva kusy èerné rudy, a ještì jeden nuget magické rudy.
-		Log_CreateTopic (TOPIC_Huno_BARONARMOR,LOG_MISSION);
+    Ninja_OCExpansion_MIS_Huno_BARONARMOR = LOG_RUNNING;
+	Log_CreateTopic (TOPIC_Huno_BARONARMOR,LOG_MISSION);
 	Log_SetTopicStatus (TOPIC_Huno_BARONARMOR,LOG_RUNNING);
 	B_LogEntry (TOPIC_Huno_BARONARMOR,"Huno souhlasil na vylepšení zbroje rudobarona za pomocí èerné rudy, bude potøebovat dva kusy èerné rudy a jeden nuget magické rudy.");
 };
@@ -493,7 +496,8 @@ func void DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_Info ()
         AI_Output(self, other, "DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_13_13"); //Tady je, jsem sám pøekvapený že se takhle vydaøila.
         AI_Output(other, self, "DIA_Patch_OCExpansion_DOBAR_BARON_BlackArmor_15_14"); //Díky.
 				B_LogEntry (TOPIC_Huno_BARONARMOR,"Huno mi vylepšil zbroj rudobarona za pomocí èerné rudy.");
-		Log_SetTopicStatus(TOPIC_Huno_BARONARMOR, LOG_SUCCESS);	
+		Log_SetTopicStatus(TOPIC_Huno_BARONARMOR, LOG_SUCCESS);
+        Ninja_OCExpansion_MIS_Huno_BARONARMOR = LOG_SUCCESS;
 	}
 	else 
 	{
