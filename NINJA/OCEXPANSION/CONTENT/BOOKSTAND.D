@@ -1,3 +1,4 @@
+var int Ninja_OCExpansion_MIS_Huno_BARONARMOR__Log_Entry_Added;
 func void Ninja_OCExpansion_Use_FINALDRAGONEQUIPMENT_S1()
 {
     ContinueCall();
