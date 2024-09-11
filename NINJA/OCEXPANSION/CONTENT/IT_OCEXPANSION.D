@@ -1,6 +1,6 @@
 INSTANCE ITAR_OC_BH (C_Item)
 {
-	name 					=	"Zbroj Rudobarona Z Èerné Rudy";
+	name 					=	"Ore Baron's Armor from black ore";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -25,7 +25,7 @@ INSTANCE ITAR_OC_BH (C_Item)
 	
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 5 bodù síly";
+	TEXT[0]					= 	"5 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -53,7 +53,7 @@ func void UnEquip_ITAR_OC_BH()
 	};
 INSTANCE ITAR_OC_BM (C_Item)
 {
-	name 					=	"Tìžká Zbroj Rudobarona";
+	name 					=	"Heavy Ore Baron's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -78,7 +78,7 @@ INSTANCE ITAR_OC_BM (C_Item)
 
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 4 body síly";
+	TEXT[0]					= 	"4 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -106,7 +106,7 @@ func void UnEquip_ITAR_OC_BM()
 	};
 INSTANCE ITAR_OC_BL (C_Item)
 {
-	name 					=	"Zbroj Rudobarona";
+	name 					=	"Ore Baron's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -131,7 +131,7 @@ INSTANCE ITAR_OC_BL (C_Item)
 	
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 3 body síly";
+	TEXT[0]					= 	"3 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -159,7 +159,7 @@ func void UnEquip_ITAR_OC_BL()
 	};
 INSTANCE ITAR_OC_GM (C_Item)
 {
-	name 					=	"Zbroj Stráže";
+	name 					=	"Guard's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -184,7 +184,7 @@ INSTANCE ITAR_OC_GM (C_Item)
 	
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 2 body síly";
+	TEXT[0]					= 	"2 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -212,7 +212,7 @@ func void UnEquip_ITAR_OC_GM()
 	};
 INSTANCE ITAR_OC_GL (C_Item)
 {
-	name 					=	"Lehká Zbroj Stráže";
+	name 					=	"Light Guard's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -237,7 +237,7 @@ INSTANCE ITAR_OC_GL (C_Item)
 	
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 2 body síly";
+	TEXT[0]					= 	"2 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -265,7 +265,7 @@ func void UnEquip_ITAR_OC_GL()
 	};
 INSTANCE ITAR_OC_SH (C_Item)
 {
-	name 					=	"Zbroj Stína";
+	name 					=	"Shadow's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -305,7 +305,7 @@ INSTANCE ITAR_OC_SH (C_Item)
 };
 INSTANCE ITAR_OC_SL (C_Item)
 {
-	name 					=	"Odìv Stína";
+	name 					=	"Shadow's Dress";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -345,7 +345,7 @@ INSTANCE ITAR_OC_SL (C_Item)
 };
 INSTANCE ITAR_OC_SB (C_Item)
 {
-	name 					=	"Obnošený Odìv Stína";
+	name 					=	"Worn Shadow's Dress";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -367,7 +367,7 @@ INSTANCE ITAR_OC_SB (C_Item)
 
 	description				=	name;
 
-	TEXT[0]					= 	"Tato zbroj zažila lepší èasy, mìl bych ji dát opravit.";
+	TEXT[0]					= 	"Tato zbroj zaÅ¾ila lepÅ¡Ã­ Ã¨asy, mÃ¬l bych ji dÃ¡t opravit.";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -385,7 +385,7 @@ INSTANCE ITAR_OC_SB (C_Item)
 };
 INSTANCE ITAR_OC_GMR (C_Item)
 {
-	name 					=	"Vylepšená Zbroj Stráže";
+	name 					=	"Improved Guard's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -410,7 +410,7 @@ INSTANCE ITAR_OC_GMR (C_Item)
 	
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 3 body síly";
+	TEXT[0]					= 	"3 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -438,7 +438,7 @@ func void UnEquip_ITAR_OC_GMR()
 	};
 INSTANCE ITAR_OC_GLR (C_Item)
 {
-	name 					=	"Vylepšená Lehká Zbroj Stráže";
+	name 					=	"Improved Light Guard's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -463,7 +463,7 @@ INSTANCE ITAR_OC_GLR (C_Item)
 	
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 3 body síly";
+	TEXT[0]					= 	"3 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -491,7 +491,7 @@ func void UnEquip_ITAR_OC_GLR()
 	};
 INSTANCE ITAR_OC_GHR (C_Item)
 {
-	name 					=	"Vylepšená Tìžká Zbroj Stráže";
+	name 					=	"Improved Heavy Guard's Armor";
 
 	mainflag 				=	ITEM_KAT_ARMOR;
 	flags 					=	0;
@@ -516,7 +516,7 @@ INSTANCE ITAR_OC_GHR (C_Item)
 	
 	description				=	name;
 
-	TEXT[0]					= 	"Bonus 4 body síly";
+	TEXT[0]					= 	"4 Bonus points to strength";
 	TEXT[1]					=	NAME_Prot_Edge;			
 	COUNT[1]				= 	protection	[PROT_EDGE];
 	
@@ -545,7 +545,7 @@ func void UnEquip_ITAR_OC_GHR()
 	
 instance ItWr_BluePrint_ImproveOCArmor(C_Item)
 {
-	name = "Nákres na vylepšení zbrojí ze starého tábora";
+	name = "Blueprint for improving armors from the old camp";
 
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
@@ -571,23 +571,23 @@ func void Use_Plan_OCArmor_Ninja()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"     Nápady na vylepšní zbrojí v táboøe");
+	Doc_PrintLine(nDocID,0,"     My ideas for improving the armors of the old camp");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Stone, dostal jsem nápad jak vylepšit zbroje které se tu nosí. Zkus ho zvážit.");
+	Doc_PrintLines(nDocID,0,"Stone, I got some ideas for improving the armors worn by the guards around here. Give them a chance.");
 	Doc_PrintLines(nDocID,0,"");
-    Doc_PrintLines(nDocID,0,"Suroviny pro lehkou zbroj stráže:");
-    Doc_PrintLines(nDocID,0,"1x surová ocel, 2x Kùže divoèáka");
+    Doc_PrintLines(nDocID,0,"Materials needed for the Light armor:");
+    Doc_PrintLines(nDocID,0,"1x Raw Steel, 2x Boarskin");
     Doc_PrintLines(nDocID,0,"");
-    Doc_PrintLines(nDocID,0,"Suroviny pro støední zbroj stráže:");
-    Doc_PrintLines(nDocID,0,"2x surová ocel, 2x kùže Warga");
+    Doc_PrintLines(nDocID,0,"Materials needed for the Medium armor:");
+    Doc_PrintLines(nDocID,0,"2x Raw Steel, 2x Warg Fur");
     Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Suroviny pro tìžkou zbroj stráže:");
-	Doc_PrintLines(nDocID,0,"4x surová ocel, 1x kùže Trolla");
+	Doc_PrintLines(nDocID,0,"Materials needed for the Heavy armor:");
+	Doc_PrintLines(nDocID,0,"4x Raw Steel, 1x Troll fur");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Suroviny pro zbroj rudobarona:");
-	Doc_PrintLines(nDocID,0,"4x surová ocel, 1x hrudka magické rudy");
+	Doc_PrintLines(nDocID,0,"Materials needed for the Ore Baron armor:");
+	Doc_PrintLines(nDocID,0,"4x Raw Steel, 1x Magic Ore Nugget");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Postup jsem napsal na druhou stranu.");
+	Doc_PrintLines(nDocID,0,"I wrote down the steps on improving them on the other side.");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -596,7 +596,7 @@ func void Use_Plan_OCArmor_Ninja()
 
 instance ItWr_BluePrint_OC_SH(C_Item)
 {
-	name = "Nákres na výrobu zbroje stína";
+	name = "Shadow's Armor Blueprint";
 
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
@@ -622,14 +622,14 @@ func void Use_Plan_OC_SH_Ninja()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"     Nákres na výrobu zbroje stína");
+	Doc_PrintLine(nDocID,0,"     Shadow's Armor Blueprint");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
-    Doc_PrintLines(nDocID,0,"Potøebné suroviny:");
-    Doc_PrintLines(nDocID,0,"2x surová ocel, 3x Kùže vlka");
+    Doc_PrintLines(nDocID,0,"Necessay Ingredients:");
+    Doc_PrintLines(nDocID,0,"2x Raw Steel, 3x Wolf fur");
     Doc_PrintLines(nDocID,0,"");
-    Doc_PrintLines(nDocID,0,"Postup máš napsaný na druhé stranì");
+    Doc_PrintLines(nDocID,0,"I wrote the steps for forging it on the other side");
     Doc_PrintLines(nDocID,0,"");
     Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
